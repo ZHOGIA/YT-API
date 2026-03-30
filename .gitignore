@@ -1,0 +1,17 @@
+# Environments
+.env
+.venv
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Downloaded Files / Temporary files
+downloads/
+ffmpeg.exe
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/
