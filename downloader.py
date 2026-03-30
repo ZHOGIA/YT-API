@@ -18,24 +18,19 @@ def clean_filename(title):
 def get_info(url):
     ydl_opts = {
         'quiet': True,
-        'no_warnings': True,
-        'extractor_args': {
-            'youtube': {'client': ['android', 'ios']}
-        }
+        'no_warnings': True
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url, download=False)
         
-        audio_formats = []
-        for f in info.get('formats', []):
-            if f.get('acodec') != 'none' and f.get('vcodec') == 'none':
-                if f.get('abr'):
-                    audio_formats.append({
-                        'format_id': f['format_id'],
-                        'ext': f['ext'],
-                        'abr': round(f['abr']),
-                        'filesize': f.get('filesize', 0)
-                    })
+        # Cukup gunakan daftar bitrate konversi tetap untuk MP3 karena FFmpeg akan memprosesnya.
+        audio_formats = [
+            {'format_id': 'bestaudio', 'ext': 'mp3', 'abr': 512, 'filesize': 0},
+            {'format_id': 'bestaudio', 'ext': 'mp3', 'abr': 320, 'filesize': 0},
+            {'format_id': 'bestaudio', 'ext': 'mp3', 'abr': 256, 'filesize': 0},
+            {'format_id': 'bestaudio', 'ext': 'mp3', 'abr': 192, 'filesize': 0},
+            {'format_id': 'bestaudio', 'ext': 'mp3', 'abr': 150, 'filesize': 0},
+        ]
         
         video_formats = []
         for f in info.get('formats', []):
@@ -46,18 +41,8 @@ def get_info(url):
                         'ext': f['ext'],
                         'resolution': f.get('height'),
                         'vcodec': f.get('vcodec'),
-                        'filesize': f.get('filesize', 0)
+                        'filesize': f.get('filesize') or 0
                     })
-
-        # Sort and deduplicate
-        audio_formats = sorted(audio_formats, key=lambda x: x['abr'], reverse=True)
-        # only keep unique bitrates
-        unique_audio = {}
-        for a in audio_formats:
-            abr = a['abr']
-            if abr not in unique_audio or a['filesize'] > unique_audio[abr]['filesize']:
-                unique_audio[abr] = a
-        audio_formats = sorted(list(unique_audio.values()), key=lambda x: x['abr'], reverse=True)
 
         unique_videos = {}
         for v in video_formats:
@@ -111,17 +96,21 @@ def download_task(url, format_type, quality, task_id):
         temp_filename = f"{clean_title}_{task_id}"
         temp_path = os.path.join(DOWNLOAD_DIR, temp_filename + ".%(ext)s")
         
-        ffmpeg_loc = os.path.join(os.getcwd(), 'ffmpeg.exe')
-        
         ydl_opts = {
             'outtmpl': temp_path,
-            'ffmpeg_location': ffmpeg_loc if os.path.exists(ffmpeg_loc) else os.getcwd(),
             'logger': MyLogger(),
-            'progress_hooks': [lambda d: progress_hook(d, task_id)],
-            'extractor_args': {
-                'youtube': {'client': ['android', 'ios']}
-            }
+            'progress_hooks': [lambda d: progress_hook(d, task_id)]
         }
+        
+        # Deteksi Universal (Windows / Linux)
+        import shutil
+        system_ffmpeg = shutil.which('ffmpeg')
+        local_ffmpeg = os.path.join(os.getcwd(), 'ffmpeg.exe')
+        
+        if system_ffmpeg:
+            ydl_opts['ffmpeg_location'] = system_ffmpeg
+        elif os.path.exists(local_ffmpeg):
+            ydl_opts['ffmpeg_location'] = local_ffmpeg
 
         if format_type == 'mp3':
             ydl_opts['format'] = 'bestaudio/best'

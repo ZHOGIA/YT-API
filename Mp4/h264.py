@@ -12,7 +12,7 @@ def clean_filename(title):
 
 def download_and_convert():
     print("="*50)
-    print("🛠️  PHOEBE'S FINAL FIXER (SAFE MODE)  🛠️")
+    print("🛠️  TOOL'S FINAL FIXER (SAFE MODE)  🛠️")
     print("="*50)
     
     url = input("\n👉 Paste Link YouTube: ")

@@ -10,7 +10,7 @@ def clean_filename(title):
 
 def download_mp3():
     print("="*50)
-    print("🎵 PHOEBE'S MP3 DOWNLOADER (512kbps) 🎵")
+    print("🎵 TOOL'S MP3 DOWNLOADER (512kbps) 🎵")
     print("="*50)
     
     url = input("\n👉 Paste Link YouTube lagu di sini: ")

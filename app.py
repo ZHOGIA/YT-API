@@ -66,4 +66,5 @@ def download(task_id):
     return send_file(file_path, as_attachment=True, download_name=filename)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # host='0.0.0.0' allows external connections (from Vercel / Public IP)
+    app.run(host='0.0.0.0', debug=True, port=5000)
