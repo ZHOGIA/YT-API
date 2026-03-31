@@ -8,3 +8,6 @@ Jinja2==3.1.6
 MarkupSafe==3.0.3
 Werkzeug==3.1.7
 yt-dlp==2026.3.17
+rembg
+onnxruntime-gpu
+Pillow

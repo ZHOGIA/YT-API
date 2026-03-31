@@ -171,3 +171,20 @@ def start_download(url, format_type, quality=None):
 
 def get_task_status(task_id):
     return TASKS.get(task_id, None)
+
+def cleanup_task(task_id):
+    task = TASKS.get(task_id)
+    if not task:
+        return False
+        
+    file_path = task.get('file_path')
+    if file_path and os.path.exists(file_path):
+        try:
+            os.remove(file_path)
+            print(f"[+] Berhasil menghapus file dari disk: {file_path}")
+        except Exception as e:
+            print(f"[-] Gagal menghapus file {file_path}: {e}")
+            
+    # Hapus jejak dari TASKS dict
+    TASKS.pop(task_id, None)
+    return True
