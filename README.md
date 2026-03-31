@@ -1,4 +1,4 @@
-# 🚀 Phoebe's Studio - YouTube Downloader
+# 🚀 Tool's Studio - YouTube Downloader
 
 Phoebe's Studio adalah sebuah Web Application modern dan elegan untuk mengunduh video dan audio dari YouTube (serta berbagai platform lainnya yang didukung oleh `yt-dlp`). Dibuat menggunakan paduan kekuatan **Python (Flask)** sebagai mesin pemroses utama (Backend) dan UI interaktif berdesain *Glassmorphism* (Frontend).
 
