@@ -1,0 +1,56 @@
+<h3>v1.4.0 (Latest)</h3>
+                            <ul>
+                                <li><strong>remove.bg API:</strong> Added support for remove.bg Cloud API as an optional backend. When an API key is configured, the server uses remove.bg's gold-standard AI instead of local models — resulting in near-zero RAM usage and best-in-class quality.</li>
+                                <li><strong>Session Recovery:</strong> Website now automatically restores your progress after your phone sleeps or you switch tabs. Remove BG results and active downloads are saved and resumed seamlessly when you return.</li>
+                                <li><strong>Memory Optimization:</strong> Implemented OS-level memory trimming (malloc_trim) after each Remove BG request, ensuring freed memory is actually returned to the system and not held in Python's internal buffer pool.</li>
+                                <li><strong>Server Stability:</strong> Added startup cleanup on server boot — any leftover AI-processed images from a previous session or crash are automatically detected and cleaned up, preventing data from being retained indefinitely.</li>
+                            </ul>
+                            <h3>v1.3.5</h3>
+                            <ul>
+                                <li><strong>AI Multi-Model:</strong> Introduced smart Image Type selector for Remove BG choose between Human/Portrait, Anime/Illustration, and General Object for significantly more accurate results.</li>
+                                <li><strong>AI Accuracy:</strong> Switched to specialized AI models per image type.</li>
+                            </ul>
+                            <h3>v1.3.0</h3>
+                            <ul>
+                                <li><strong>AI Enhancement:</strong> Upgraded Remove Background AI rendering engine to preserve complex edges (like hair & clothing) perfectly without harsh cutoffs.</li>
+                                <li><strong>AI Clean-Up:</strong> Integrated smart post-processing masks to automatically detect and eliminate floating shadow artifacts and leftover noisy blobs.</li>
+                            </ul>
+                            <h3>v1.2.5</h3>
+                            <ul>
+                                <li><strong>Grab It All:</strong> Updated from YouTube Downloader to Grab It All! Now you can grab media from Facebook, Twitter, Instagram, Threads, TikTok and more.</li>
+                                <li><strong>Smart Prefix:</strong> Social media links now automatically use short prefix abbreviations (e.g. FB, IG, TW) on filenames.</li>
+                                <li><strong>Changes:</strong> Logo changed to a download icon for better reflection of its functionality.</li>
+                                <li><strong>Hotfix:</strong> Resolved "Requested format is not available" error on YouTube caused by cookies conflict.</li>
+                                <li><strong>Notice:</strong> Temporarily disabled Threads downloading functionality due to underlying Meta API changes.</li>
+                            </ul>
+                            <h3>v1.1.3</h3>
+                            <ul>
+                                <li><strong>Server Health:</strong> Fixed server crash issues that caused a 9-hour downtime incident.</li>
+                                <li><strong>Bug Fixes:</strong> Resolved minor bugs and optimized performance.</li>
+                                <li><strong>UI Updates:</strong> Added a GitHub button for the project repository in the footer.</li>
+                                <li><strong>UI Updates:</strong> Added a Portfolio button in the footer for potential collaborations/work inquiries.</li>
+                            </ul>
+                            <h3>v1.1.2</h3>
+                            <ul>
+                                <li><strong>New Feature:</strong> Dual-SPA Architecture! Added a new powerful "Remove Background" AI Tool.</li>
+                                <li><strong>UI Updates:</strong> Added Tab Navigations with beautiful dynamic color themes (YouTube Maroon & AI Royal Blue) and smooth fade-in animations.</li>
+                                <li><strong>UI Updates:</strong> Interactive Dropzone & Before/After Image Comparison Slider for Remove BG.</li>
+                                <li><strong>Server Stability:</strong> Added 10MB max image upload limit for AI Rendering.</li>
+                                <li><strong>Bug Fixes:</strong> Fixed an issue causing file errors during download by implementing a smarter 24-Hour Server File Retention policy for YouTube downloads.</li>
+                                <li><strong>Privacy & Cleaner:</strong> AI images are instantly wiped on interaction, while YouTube downloads are automatically deleted by a server cron job every 24 hours. Your data is securely destroyed and never permanently stored!</li>
+                            </ul>
+                            <h3>v1.0.1</h3>
+                            <ul>
+                                <li>Added server load protection features.</li>
+                                <li><strong>Restriction:</strong> All videos/audios are strictly limited to a maximum duration of 1 hour to ensure server stability.</li>
+                                <li><strong>UI Updates:</strong> Added Changelogs menu in the header.</li>
+                                <li><strong>UI Updates:</strong> Added Donate button in the header with Ko-fi, Saweria, and Crypto support.</li>
+                                <li><strong>UI Updates:</strong> Added Copyright text, Privacy Policy, and Terms of Service in the footer.</li>
+                            </ul>
+                            <h3>v1.0.0</h3>
+                            <ul>
+                                <li>Initial release of Tool's Studio</li>
+                                <li>Support for YouTube video/audio download</li>
+                                <li>Astro JS frontend migration</li>
+                                <li>Dynamic quality selection added</li>
+                            </ul>
